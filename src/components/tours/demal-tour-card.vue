@@ -1,5 +1,5 @@
 <template>
-  <div class="tour">
+  <div class="tour" @click="$emit('click')">
     <div class="tour-image">
       <img class="tour-image-inner" src="@/assets/images/kolsai.jpg" alt="" />
     </div>
@@ -32,6 +32,7 @@ export default {};
   justify-content: space-between;
   color: $white;
   width: 100%;
+  cursor: pointer;
 
   &-image {
     width: 34%;

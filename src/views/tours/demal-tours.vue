@@ -10,7 +10,7 @@
       </div>
       <div class="tours-title-container">
         <h2 class="tours-title">Туры <span class="tours-number">30</span></h2>
-        <div class="tours-add">
+        <div class="tours-add" @click="tourAddClicked">
           <svg
             class="tours-add-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -26,13 +26,24 @@
         </div>
       </div>
       <div class="tours-wrapper">
-        <tourCard class="tours-card" />
-        <tourCard class="tours-card" />
-        <tourCard class="tours-card" />
-        <tourCard class="tours-card" />
+        <tourCard class="tours-card" @click="tourCardClicked" />
+        <tourCard class="tours-card" @click="tourCardClicked" />
+        <tourCard class="tours-card" @click="tourCardClicked" />
+        <tourCard class="tours-card" @click="tourCardClicked" />
       </div>
     </div>
-    <tourEdit class="tours-edit" />
+    <div class="tours-right">
+      <tourEdit v-show="active == 'tourEdit'" />
+      <tourAdd v-show="active == 'tourAdd'" />
+      <div v-show="active == 'empty'" class="tours-empty">
+        <div class="tours-empty-container">
+          <i class="fas fa-campground tours-empty-icon"></i>
+          <div class="tours-empty-text">
+            Кликните на необходимый тур, чтобы просмотреть полную информацию
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,12 +51,27 @@
 import demalAppInput from "@/components/common/demal-app-input";
 import tourCard from "@/components/tours/demal-tour-card";
 import tourEdit from "@/components/tours/demal-tour-edit";
+import tourAdd from "@/components/tours/demal-tour-add";
 
 export default {
   components: {
     demalAppInput,
     tourCard,
     tourEdit,
+    tourAdd,
+  },
+  data() {
+    return {
+      active: "empty",
+    };
+  },
+  methods: {
+    tourAddClicked() {
+      this.active = "tourAdd";
+    },
+    tourCardClicked() {
+      this.active = "tourEdit";
+    },
   },
 };
 </script>
@@ -68,6 +94,7 @@ export default {
     opacity: 0.9;
     font-family: "PT Sans Caption", sans-serif !important;
     font-size: 28px;
+    color: $white;
 
     &-container {
       margin-top: 30px;
@@ -132,8 +159,36 @@ export default {
     color: $black;
   }
 
-  &-edit {
+  &-right {
     width: 50%;
+  }
+
+  &-empty {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 70%;
+      margin-bottom: 50px;
+    }
+
+    &-icon {
+      color: $primary;
+      font-size: 100px;
+      margin-bottom: 30px;
+    }
+
+    &-text {
+      color: $white;
+      text-align: center;
+      line-height: 30px;
+    }
   }
 }
 </style>
