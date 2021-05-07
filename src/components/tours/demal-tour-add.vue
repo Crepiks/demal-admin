@@ -69,6 +69,16 @@ export default {
     demalAppTextarea,
     demalAppButton,
   },
+  data() {
+    return {
+      name: "",
+      description: "",
+      cost: "",
+      date: "",
+      location: "",
+      staff: "",
+    };
+  },
   methods: {
     handleChange(info) {
       const status = info.file.status;

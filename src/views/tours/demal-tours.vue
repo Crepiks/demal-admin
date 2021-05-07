@@ -95,6 +95,7 @@ export default {
     font-family: "PT Sans Caption", sans-serif !important;
     font-size: 28px;
     color: $white;
+    margin: 0;
 
     &-container {
       margin-top: 30px;
