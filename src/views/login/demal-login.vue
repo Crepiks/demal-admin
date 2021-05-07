@@ -1,17 +1,19 @@
 <template>
   <div class="login">
-    <form action="" @submit.prevent="login" class="login-form">
+    <div class="login-container">
       <i class="fas fa-map-signs login-logo"></i>
-      <div class="login-subtitle">ADMIN</div>
-      <h2 class="login-title">Войти в аккаунт</h2>
-      <demalInput class="login-input" placeholder="Введите почту" />
-      <demalInput
-        class="login-input"
-        type="password"
-        placeholder="Введите пароль"
-      />
-      <demalButton class="login-button">Войти</demalButton>
-    </form>
+      <form action="" @submit.prevent="login" class="login-form">
+        <div class="login-subtitle">ADMIN</div>
+        <h2 class="login-title">Войти в аккаунт</h2>
+        <demalInput class="login-input" placeholder="Введите почту" />
+        <demalInput
+          class="login-input"
+          type="password"
+          placeholder="Введите пароль"
+        />
+        <demalButton class="login-button">Войти</demalButton>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -39,9 +41,18 @@ export default {
   justify-content: space-around;
   background-color: $black;
 
+  &-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 640px;
+  }
+
   &-logo {
     color: $white;
     margin-bottom: 40px;
+    font-size: 250px;
+    opacity: 0.8;
   }
 
   &-title {
