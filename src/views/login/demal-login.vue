@@ -41,12 +41,12 @@ export default {
 
   &-logo {
     color: $white;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   &-title {
     color: $white;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     opacity: 0.8;
     font-family: "PT Sans Caption", sans-serif !important;
   }
@@ -59,17 +59,18 @@ export default {
   }
 
   &-form {
-    width: 300px;
+    width: 350px;
     box-sizing: border-box;
     padding: 30px 20px;
+    border-radius: 4px;
   }
 
   &-input {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   &-button {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 </style>
