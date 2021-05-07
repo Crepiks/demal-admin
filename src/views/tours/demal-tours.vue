@@ -32,17 +32,20 @@
         <tourCard class="tours-card" />
       </div>
     </div>
+    <tourEdit class="tours-edit" />
   </div>
 </template>
 
 <script>
 import demalAppInput from "@/components/common/demal-app-input";
 import tourCard from "@/components/tours/demal-tour-card";
+import tourEdit from "@/components/tours/demal-tour-edit";
 
 export default {
   components: {
     demalAppInput,
     tourCard,
+    tourEdit,
   },
 };
 </script>
@@ -127,6 +130,10 @@ export default {
   &-tag:hover {
     background-color: #b2b2b2;
     color: $black;
+  }
+
+  &-edit {
+    width: 50%;
   }
 }
 </style>
