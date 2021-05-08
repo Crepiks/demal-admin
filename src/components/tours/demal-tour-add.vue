@@ -18,65 +18,99 @@
     </a-upload-dragger>
     <div class="tour-info">
       <div class="tour-tags">
-        <div class="tour-tag">На этой неделе</div>
-        <div class="tour-tag">Тур на один день</div>
-        <div class="tour-tag">Экстремальный тур</div>
-        <div class="tour-tag">Без спец оборудования</div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'На этой неделе' }"
+        >
+          На этой неделе
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Тур на один день' }"
+        >
+          Тур на один день
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Экстремальный тур' }"
+        >
+          Экстремальный тур
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Без спец оборудования' }"
+        >
+          Без спец оборудования
+        </div>
       </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Название</div>
-        <demalAppInputEdit v-model="name" placeholder="Введите название" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Описание</div>
-        <demalAppTextarea :value="description" placeholder="Введите описание" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Цена</div>
-        <demalAppInputEdit v-model="cost" placeholder="Введите цену" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Время проведения</div>
-        <demalAppInputEdit
-          v-model="date"
-          placeholder="Введите время проведение"
-        />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Локация</div>
-        <demalAppInputEdit v-model="location" placeholder="Введите локацию" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Необходимые вещи</div>
-        <demalAppTextarea
-          :value="staff"
-          placeholder="Введите необходимые вещи"
-        />
-      </div>
+      <demalAppInput
+        class="tour-input"
+        v-model="tour.title"
+        title="Название"
+        placeholder="Введите название"
+      />
+      <demalAppTextarea
+        class="tour-input"
+        v-model="tour.description"
+        title="Описание"
+        placeholder="Введите описание"
+      />
+      <demalAppInput
+        class="tour-input"
+        v-model="tour.date"
+        title="Время проведения"
+        placeholder="Введите время проведения"
+      />
+      <demalAppInput
+        class="tour-input"
+        v-model="tour.lon"
+        title="Долгота"
+        placeholder="Введите долготу"
+      />
+      <demalAppInput
+        class="tour-input"
+        v-model="tour.lat"
+        title="Широта"
+        placeholder="Введите широту"
+      />
+      <demalAppTextarea
+        class="tour-input"
+        v-model="tour.equipment"
+        title="Необходимые вещи"
+        placeholder="Введите необходимые вещи"
+      />
     </div>
     <demalAppButton>Добавить</demalAppButton>
   </div>
 </template>
 
 <script>
-import demalAppInputEdit from "@/components/common/demal-app-input";
+import demalAppInput from "@/components/common/demal-app-input";
 import demalAppTextarea from "@/components/common/demal-app-textarea";
 import demalAppButton from "@/components/common/demal-app-button";
 
 export default {
   components: {
-    demalAppInputEdit,
+    demalAppInput,
     demalAppTextarea,
     demalAppButton,
   },
   data() {
     return {
-      name: "",
-      description: "",
-      cost: "",
-      date: "",
-      location: "",
-      staff: "",
+      tour: {
+        id: 0,
+        tag: "",
+        title: "",
+        description: "",
+        cost: "",
+        date: "",
+        lon: "",
+        lat: "",
+        equipment: "",
+        participants: [],
+        rating: "",
+        images: [],
+      },
     };
   },
   methods: {

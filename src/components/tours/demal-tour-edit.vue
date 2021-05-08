@@ -51,9 +51,8 @@
       <demalAppTextarea
         class="tour-input"
         v-model="tour.description"
-        title="Название"
+        title="Описание"
       />
-      <demalAppInput class="tour-input" v-model="tour.cost" title="Цена" />
       <demalAppInput
         class="tour-input"
         v-model="tour.date"
@@ -106,7 +105,6 @@ export default {
         title: "Озеро Кольсай Каинды и черный каньон",
         description:
           "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
-        cost: "150$",
         date: "23.05.2021",
         lon: "12.23.51.85",
         lat: "12.23.51.85",
