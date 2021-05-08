@@ -34,6 +34,7 @@ export default {
   text-align: center;
   outline: none;
   cursor: pointer;
+  min-width: 120px;
   transition: 200ms ease-in-out;
 
   &:hover {

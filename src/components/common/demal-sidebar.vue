@@ -52,6 +52,21 @@
         </svg>
       </router-link>
     </div>
+    <router-link class="sidebar-link" to="/login">
+      <svg
+        class="sidebar-link-icon sidebar-link-icon-logout"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        style="fill: #ffffff; transform: ; -ms-filter: "
+      >
+        <path d="M16 13L16 11 7 11 7 8 2 12 7 16 7 13z"></path>
+        <path
+          d="M20,3h-9C9.897,3,9,3.897,9,5v4h2V5h9v14h-9v-4H9v4c0,1.103,0.897,2,2,2h9c1.103,0,2-0.897,2-2V5C22,3.897,21.103,3,20,3z"
+        ></path>
+      </svg>
+    </router-link>
   </div>
 </template>
 
@@ -91,6 +106,15 @@ export default {};
       color: $white;
       opacity: 0.7;
       font-size: 30px;
+
+      &-logout {
+        margin-top: 700px;
+        transition: 200ms ease-in-out;
+      }
+
+      &-logout:hover {
+        opacity: 0.5;
+      }
     }
 
     &.router-link-exact-active {

@@ -1,5 +1,12 @@
 <template>
   <div class="admins">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <demalAppInputSearch class="admins-search" placeholder="Искать" />
     <div class="admins-container">
       <h2 class="admins-title">
@@ -48,7 +55,12 @@
         title="Пароль"
         type="password"
       />
-      <demalAppButton class="admins-button">Добавить</demalAppButton>
+      <demalAppButton
+        class="admins-button"
+        @click="handleClick"
+        :isLoading="isLoading"
+        >Добавить</demalAppButton
+      >
     </demalModal>
   </div>
 </template>
@@ -59,6 +71,7 @@ import demalAppInput from "@/components/common/demal-app-input";
 import demalAdminsTable from "@/components/admins/demal-admins-table";
 import demalModal from "@/components/common/demal-modal";
 import demalAppButton from "@/components/common/demal-app-button";
+import notification from "@/components/common/demal-notification";
 
 export default {
   components: {
@@ -67,6 +80,7 @@ export default {
     demalAdminsTable,
     demalModal,
     demalAppButton,
+    notification,
   },
   data() {
     return {
@@ -77,6 +91,7 @@ export default {
         "Дата подтверждения",
         "Дата создания",
       ],
+      isLoading: false,
       admins: [
         {
           id: 0,
@@ -177,6 +192,18 @@ export default {
       ],
       isModalOpen: false,
     };
+  },
+  methods: {
+    handleClick() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.isModalOpen = false;
+        this.isNotificationOpen = true;
+        this.notificationStatus = "success";
+        this.notificationHeading = "Администратор успешно добавлен!";
+      }, 1500);
+    },
   },
 };
 </script>

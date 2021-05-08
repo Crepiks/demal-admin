@@ -11,7 +11,12 @@
           type="password"
           placeholder="Введите пароль"
         />
-        <demalButton class="login-button">Войти</demalButton>
+        <demalButton
+          class="login-button"
+          :isLoading="isLoading"
+          @click="handleClick"
+          >Войти</demalButton
+        >
       </form>
     </div>
   </div>
@@ -25,6 +30,20 @@ export default {
   components: {
     demalInput,
     demalButton,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    handleClick() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$router.push("/");
+      }, 1000);
+    },
   },
 };
 </script>
