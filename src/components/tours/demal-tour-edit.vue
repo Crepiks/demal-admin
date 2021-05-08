@@ -53,11 +53,8 @@
         v-model="tour.description"
         title="Описание"
       />
-      <demalAppInput
-        class="tour-input"
-        v-model="tour.date"
-        title="Время проведения"
-      />
+      <demalAppInput class="tour-input" v-model="tour.start" title="Начало" />
+      <demalAppInput class="tour-input" v-model="tour.end" title="Конец" />
       <demalAppInput class="tour-input" v-model="tour.lon" title="Долгота" />
       <demalAppInput class="tour-input" v-model="tour.lat" title="Широта" />
       <demalAppTextarea
@@ -105,7 +102,8 @@ export default {
         title: "Озеро Кольсай Каинды и черный каньон",
         description:
           "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
-        date: "23.05.2021",
+        start: "23.05.2021",
+        end: "23.05.2021",
         lon: "12.23.51.85",
         lat: "12.23.51.85",
         equipment: "Lorem ipsum dolor sit amet consectetur",

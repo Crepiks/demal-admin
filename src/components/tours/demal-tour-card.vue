@@ -9,7 +9,7 @@
         <i class="far fa-edit tour-edit"></i>
       </div>
       <div class="tour-name">{{ tour.title }}</div>
-      <div class="tour-date">Начало: {{ tour.date }}</div>
+      <div class="tour-date">Начало: {{ tour.start }}</div>
       <div class="tour-container">
         <div class="tour-rating">
           <i class="fas fa-star tour-rating-star"></i> {{ tour.rating }}

@@ -57,9 +57,15 @@
       />
       <demalAppInput
         class="tour-input"
-        v-model="tour.date"
-        title="Время проведения"
-        placeholder="Введите время проведения"
+        v-model="tour.start"
+        title="Начало"
+        placeholder="Введите дату начала"
+      />
+      <demalAppInput
+        class="tour-input"
+        v-model="tour.start"
+        title="Конец"
+        placeholder="Введите дату конца"
       />
       <demalAppInput
         class="tour-input"
@@ -102,8 +108,8 @@ export default {
         tag: "",
         title: "",
         description: "",
-        cost: "",
-        date: "",
+        start: "",
+        end: "",
         lon: "",
         lat: "",
         equipment: "",

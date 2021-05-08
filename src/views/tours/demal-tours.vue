@@ -83,7 +83,8 @@ export default {
           title: "Озеро Кольсай Каинды и черный каньон",
           description:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
-          date: "23.05.2021",
+          start: "23.05.2021",
+          end: "23.05.2021",
           lon: "12.23.51.85",
           lat: "12.23.51.85",
           equipment: "Lorem ipsum dolor sit amet consectetur",
