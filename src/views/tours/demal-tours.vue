@@ -84,6 +84,8 @@ export default {
   color: $white;
   display: flex;
   justify-content: space-between;
+  max-height: 100%;
+  box-sizing: border-box;
 
   &-list {
     width: 40%;
@@ -130,6 +132,8 @@ export default {
 
   &-wrapper {
     margin-top: 40px;
+    max-height: 60%;
+    overflow: auto;
   }
 
   &-card {
@@ -166,7 +170,7 @@ export default {
 
   &-empty {
     width: 100%;
-    height: 100vh;
+    max-height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -176,7 +180,7 @@ export default {
       flex-direction: column;
       align-items: center;
       width: 70%;
-      margin-bottom: 50px;
+      margin-top: 40%;
     }
 
     &-icon {

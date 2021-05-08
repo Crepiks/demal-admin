@@ -21,7 +21,8 @@ export default {
 
 .app-page {
   background-color: $black;
-  min-height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
   width: 100%;
   display: flex;
 

@@ -144,6 +144,9 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .tour {
+  max-height: 100%;
+  overflow: auto;
+
   &-image {
     width: 100%;
 

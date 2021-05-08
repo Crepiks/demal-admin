@@ -100,6 +100,9 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap");
 
 .tour {
+  max-height: 100%;
+  overflow: auto;
+
   &-title {
     font-family: "PT Sans Caption", sans-serif !important;
     font-size: 28px;
