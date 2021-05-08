@@ -28,10 +28,7 @@
         >
           На этой неделе
         </div>
-        <div
-          class="tour-tag"
-          :class="{ 'tour-tag-active': tour.tag == 'Тур на один день' }"
-        >
+        <div class="tour-tag" :class="{ 'tour-tag-active': tour.tag == null }">
           Тур на один день
         </div>
         <div
@@ -77,16 +74,19 @@
           title="Широта"
         />
       </div>
-      <demalAppTextarea
-        class="tour-input"
-        v-model="tour.equipment"
-        title="Необходимые вещи"
-      />
-      <demalAppTextarea
-        class="tour-input"
-        v-model="tour.participants"
-        title="Участники"
-      />
+      <demalAppInput class="tour-input" v-model="tour.price" title="Цена" />
+      <div>
+        <div class="tour-bubble-title">Участники</div>
+        <div class="tour-bubble-container">
+          <div
+            class="tour-bubble"
+            v-for="participant in tour.participants"
+            :key="participant.id"
+          >
+            {{ participant.firstName }} {{ participant.email }}
+          </div>
+        </div>
+      </div>
     </div>
     <demalAppButton>Сохранить</demalAppButton>
   </div>
@@ -96,12 +96,6 @@
 import demalAppInput from "@/components/common/demal-app-input";
 import demalAppTextarea from "@/components/common/demal-app-textarea";
 import demalAppButton from "@/components/common/demal-app-button";
-import kolsai from "@/assets/images/kolsai.jpg";
-import kolsai1 from "@/assets/images/kolsai1.jpg";
-import kolsai2 from "@/assets/images/kolsai2.jpg";
-import kolsai3 from "@/assets/images/kolsai3.jpg";
-import kolsai4 from "@/assets/images/kolsai4.jpeg";
-import kolsai5 from "@/assets/images/kolsai5.jpg";
 
 export default {
   components: {
@@ -113,76 +107,12 @@ export default {
     tourId: {
       type: Number,
     },
+    tour: {
+      type: [Array, Object],
+    },
   },
   data() {
     return {
-      tour: {
-        id: 0,
-        tag: "Тур на один день",
-        title: "Озеро Кольсай Каинды и черный каньон",
-        description:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
-        start: "23.05.2021",
-        end: "23.05.2021",
-        lon: "12.23.51.85",
-        lat: "12.23.51.85",
-        equipment: "Lorem ipsum dolor sit amet consectetur",
-        participants: [
-          {
-            id: 0,
-            firstName: "Данияр",
-          },
-          {
-            id: 1,
-            firstName: "Данияр",
-          },
-          {
-            id: 2,
-            firstName: "Данияр",
-          },
-          {
-            id: 3,
-            firstName: "Данияр",
-          },
-          {
-            id: 4,
-            firstName: "Данияр",
-          },
-        ],
-        rating: "4.8",
-        images: [
-          {
-            id: 0,
-            path: kolsai,
-          },
-          {
-            id: 1,
-            path: kolsai1,
-          },
-          {
-            id: 2,
-            path: kolsai2,
-          },
-          {
-            id: 3,
-            path: kolsai3,
-          },
-          {
-            id: 4,
-            path: kolsai4,
-          },
-          {
-            id: 5,
-            path: kolsai5,
-          },
-        ],
-      },
-      kolsai: kolsai,
-      kolsai1: kolsai1,
-      kolsai2: kolsai2,
-      kolsai3: kolsai3,
-      kolsai4: kolsai4,
-      kolsai5: kolsai5,
       mainImage: null,
     };
   },
@@ -194,9 +124,9 @@ export default {
     mouseOut(image) {
       image.cover = false;
     },
-  },
-  mounted() {
-    this.mainImage = this.tour.images[0].path;
+    changeMainImage(path) {
+      this.mainImage = path;
+    },
   },
 };
 </script>
@@ -308,6 +238,31 @@ export default {
 
     &-inner {
       width: 46%;
+    }
+  }
+
+  &-bubble {
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    padding: 14px 20px;
+    font-size: 14px;
+    border-radius: 12px;
+    background-color: #262338;
+    width: fit-content;
+    color: $white;
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    &-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &-title {
+      font-size: 13px;
+      color: $white;
+      opacity: 0.7;
+      margin-bottom: 10px;
     }
   }
 }

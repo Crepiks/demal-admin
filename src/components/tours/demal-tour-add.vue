@@ -1,21 +1,23 @@
 <template>
   <div class="tour">
     <div class="tour-title">Добавление тура</div>
-    <a-upload-dragger
-      name="file"
-      :multiple="true"
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      @change="handleChange"
-    >
-      <p class="ant-upload-drag-icon">
-        <a-icon type="inbox" />
-      </p>
-      <p class="ant-upload-text">Загрузите фотографии местности</p>
-      <p class="ant-upload-hint">
-        Поддержка однократной или массовой загрузки. Строго запретить загрузку
-        данных компании или других файлов группы
-      </p>
-    </a-upload-dragger>
+    <div class="clearfix">
+      <a-upload
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        list-type="picture-card"
+        :file-list="fileList"
+        @preview="handlePreview"
+        @change="handleChange"
+      >
+        <div v-if="fileList.length < 8">
+          <a-icon type="plus" />
+          <div class="ant-upload-text">Upload</div>
+        </div>
+      </a-upload>
+      <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+        <img alt="example" style="width: 100%" :src="previewImage" />
+      </a-modal>
+    </div>
     <div class="tour-info">
       <div class="tour-tags">
         <div
@@ -83,11 +85,11 @@
           placeholder="Введите широту"
         />
       </div>
-      <demalAppTextarea
-        class="tour-input"
-        v-model="tour.equipment"
-        title="Необходимые вещи"
-        placeholder="Введите необходимые вещи"
+      <demalAppInput
+        class="tour-input tour-container-inner"
+        v-model="tour.price"
+        title="Цена"
+        placeholder="Введите цену"
       />
     </div>
     <demalAppButton>Добавить</demalAppButton>
@@ -98,6 +100,15 @@
 import demalAppInput from "@/components/common/demal-app-input";
 import demalAppTextarea from "@/components/common/demal-app-textarea";
 import demalAppButton from "@/components/common/demal-app-button";
+
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}
 
 export default {
   components: {
@@ -121,19 +132,24 @@ export default {
         rating: "",
         images: [],
       },
+      previewVisible: false,
+      previewImage: "",
+      fileList: [],
     };
   },
   methods: {
-    handleChange(info) {
-      const status = info.file.status;
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
+    handleCancel() {
+      this.previewVisible = false;
+    },
+    async handlePreview(file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
       }
-      if (status === "done") {
-        this.$message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        this.$message.error(`${info.file.name} file upload failed.`);
-      }
+      this.previewImage = file.url || file.preview;
+      this.previewVisible = true;
+    },
+    handleChange({ fileList }) {
+      this.fileList = fileList;
     },
   },
 };
@@ -223,5 +239,28 @@ export default {
 .ant-upload-hint {
   color: $white !important;
   opacity: 0.7;
+}
+
+.ant-upload-select-picture-card i {
+  font-size: 32px;
+  color: #999;
+}
+
+.ant-upload-select-picture-card .ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+
+.ant-tooltip .ant-tooltip-placement-top .ant-tooltip-inner {
+  opacity: 0 !important;
+  color: transparent !important;
+}
+
+.ant-upload-list-item-error {
+  border-color: #2f4d6a !important;
+}
+
+.ant-modal-content {
+  background-color: #1f1f1f !important;
 }
 </style>

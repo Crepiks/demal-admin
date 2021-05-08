@@ -2,7 +2,9 @@
   <div class="admins">
     <demalAppInputSearch class="admins-search" placeholder="Искать" />
     <div class="admins-container">
-      <h2 class="admins-title">Админы</h2>
+      <h2 class="admins-title">
+        Админы <span class="admins-number">{{ admins.length }}</span>
+      </h2>
       <div class="admins-add" @click="isModalOpen = !isModalOpen">
         <svg
           class="admins-add-icon"
@@ -228,6 +230,12 @@ export default {
   &-button {
     margin-top: 30px;
     width: 100%;
+  }
+
+  &-number {
+    font-size: 12px;
+    color: $white;
+    opacity: 0.7;
   }
 }
 </style>

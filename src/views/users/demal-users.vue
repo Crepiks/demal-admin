@@ -2,7 +2,9 @@
   <div class="users">
     <demalAppInputSearch class="users-search" placeholder="Искать" />
     <div class="users-container">
-      <h2 class="users-title">Пользователи</h2>
+      <h2 class="users-title">
+        Пользователи <span class="users-number">{{ users.length }}</span>
+      </h2>
     </div>
     <demalUsersTable :heads="tableHeads" :items="users" @click="userCLicked" />
     <demalModal :isOpen="isModalOpen" @close-modal="isModalOpen = false">
@@ -230,6 +232,12 @@ export default {
   &-button {
     margin-top: 30px;
     width: 100%;
+  }
+
+  &-number {
+    font-size: 12px;
+    color: $white;
+    opacity: 0.7;
   }
 }
 </style>

@@ -1,18 +1,18 @@
 <template>
   <div class="tour" @click="$emit('click', tour.id)">
     <div class="tour-image">
-      <img class="tour-image-inner" src="@/assets/images/kolsai.jpg" alt="" />
+      <img class="tour-image-inner" :src="tour.images[0].path" alt="" />
     </div>
     <div class="tour-info">
       <div class="tour-container">
-        <div class="tour-tag">{{ tour.tag }}</div>
+        <div class="tour-tag">Тур на один день</div>
         <i class="far fa-edit tour-edit"></i>
       </div>
       <div class="tour-name">{{ tour.title }}</div>
       <div class="tour-date">Начало: {{ tour.start }}</div>
       <div class="tour-container">
         <div class="tour-rating">
-          <i class="fas fa-star tour-rating-star"></i> {{ tour.rating }}
+          <i class="fas fa-star tour-rating-star"></i> 4.8
         </div>
         <div class="tour-people">{{ tour.participants.length }} человек</div>
       </div>
