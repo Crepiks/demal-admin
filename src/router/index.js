@@ -15,11 +15,11 @@ const routes = [
     component: login,
   },
   {
-    path: "/app",
+    path: "/",
     component: appLayout,
     children: [
       {
-        path: "tours",
+        path: "",
         name: "tours",
         component: tours,
       },

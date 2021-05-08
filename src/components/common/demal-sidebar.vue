@@ -2,7 +2,7 @@
   <div class="sidebar">
     <i class="fas fa-map-signs sidebar-logo"></i>
     <div class="sidebar-links">
-      <router-link class="sidebar-link" to="/app/tours">
+      <router-link class="sidebar-link" to="/">
         <svg
           class="sidebar-link-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
           ></path>
         </svg>
       </router-link>
-      <router-link class="sidebar-link" to="/app/admins">
+      <router-link class="sidebar-link" to="/admins">
         <svg
           class="sidebar-link-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@
           ></path>
         </svg>
       </router-link>
-      <router-link class="sidebar-link" to="/app/users">
+      <router-link class="sidebar-link" to="/users">
         <svg
           class="sidebar-link-icon"
           xmlns="http://www.w3.org/2000/svg"
