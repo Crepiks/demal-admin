@@ -53,10 +53,30 @@
         v-model="tour.description"
         title="Описание"
       />
-      <demalAppInput class="tour-input" v-model="tour.start" title="Начало" />
-      <demalAppInput class="tour-input" v-model="tour.end" title="Конец" />
-      <demalAppInput class="tour-input" v-model="tour.lon" title="Долгота" />
-      <demalAppInput class="tour-input" v-model="tour.lat" title="Широта" />
+      <div class="tour-container">
+        <demalAppInput
+          class="tour-input tour-container-inner"
+          v-model="tour.start"
+          title="Начало"
+        />
+        <demalAppInput
+          class="tour-input tour-container-inner"
+          v-model="tour.end"
+          title="Конец"
+        />
+      </div>
+      <div class="tour-container">
+        <demalAppInput
+          class="tour-input tour-container-inner"
+          v-model="tour.lon"
+          title="Долгота"
+        />
+        <demalAppInput
+          class="tour-input tour-container-inner"
+          v-model="tour.lat"
+          title="Широта"
+        />
+      </div>
       <demalAppTextarea
         class="tour-input"
         v-model="tour.equipment"
@@ -280,6 +300,15 @@ export default {
   &-tag:hover {
     background-color: #b2b2b2;
     color: $black;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+
+    &-inner {
+      width: 46%;
+    }
   }
 }
 </style>
