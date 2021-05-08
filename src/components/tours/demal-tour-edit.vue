@@ -88,7 +88,9 @@
         </div>
       </div>
     </div>
-    <demalAppButton>Сохранить</demalAppButton>
+    <demalAppButton @click="handleClick" :isLoading="isLoading"
+      >Сохранить</demalAppButton
+    >
   </div>
 </template>
 
@@ -114,6 +116,7 @@ export default {
   data() {
     return {
       mainImage: null,
+      isLoading: false,
     };
   },
   methods: {
@@ -126,6 +129,13 @@ export default {
     },
     changeMainImage(path) {
       this.mainImage = path;
+    },
+    handleClick() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$emit("tour-edited");
+      }, 1500);
     },
   },
 };

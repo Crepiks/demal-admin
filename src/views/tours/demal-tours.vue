@@ -1,5 +1,12 @@
 <template>
   <div class="tours">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <div class="tours-list">
       <demalAppInputSearch placeholder="Искать" />
       <div class="tours-tags">
@@ -43,8 +50,9 @@
         ref="tourEdit"
         :tourId="tourId"
         :tour="tour"
+        @tour-edited="tourEdited"
       />
-      <tourAdd v-show="active == 'tourAdd'" />
+      <tourAdd v-show="active == 'tourAdd'" @close-tour-add="closeTourAdd" />
       <div v-show="active == 'empty'" class="tours-empty">
         <div class="tours-empty-container">
           <i class="fas fa-campground tours-empty-icon"></i>
@@ -62,6 +70,7 @@ import demalAppInputSearch from "@/components/common/demal-app-input-search";
 import tourCard from "@/components/tours/demal-tour-card";
 import tourEdit from "@/components/tours/demal-tour-edit";
 import tourAdd from "@/components/tours/demal-tour-add";
+import notification from "@/components/common/demal-notification";
 
 export default {
   components: {
@@ -69,11 +78,16 @@ export default {
     tourCard,
     tourEdit,
     tourAdd,
+    notification,
   },
   data() {
     return {
       active: "empty",
       tourId: null,
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
       tour: {},
       tours: [
         {
@@ -564,6 +578,17 @@ export default {
           this.$refs.tourEdit.changeMainImage(this.tours[i].images[0].path);
         }
       }
+    },
+    closeTourAdd() {
+      this.active = "empty";
+      this.isNotificationOpen = true;
+      this.notificationStatus = "success";
+      this.notificationHeading = "Тур успешно добавлен!";
+    },
+    tourEdited() {
+      this.isNotificationOpen = true;
+      this.notificationStatus = "success";
+      this.notificationHeading = "Изменения сохранены!";
     },
   },
 };

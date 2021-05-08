@@ -92,7 +92,9 @@
         placeholder="Введите цену"
       />
     </div>
-    <demalAppButton>Добавить</demalAppButton>
+    <demalAppButton @click="handleClick" :isLoading="isLoading"
+      >Добавить</demalAppButton
+    >
   </div>
 </template>
 
@@ -135,6 +137,7 @@ export default {
       previewVisible: false,
       previewImage: "",
       fileList: [],
+      isLoading: false,
     };
   },
   methods: {
@@ -150,6 +153,13 @@ export default {
     },
     handleChange({ fileList }) {
       this.fileList = fileList;
+    },
+    handleClick() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$emit("close-tour-add");
+      }, 1500);
     },
   },
 };
