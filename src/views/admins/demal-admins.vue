@@ -1,58 +1,179 @@
 <template>
   <div class="admins">
-    <div class="admins-left-half">
-      <demalAppInput class="admins-search" placeholder="Искать" />
-      <table class="admins-table">
-        <tr>
-          <th class="admins-table-head">ИМЯ</th>
-          <th class="admins-table-head">ПОЧТА</th>
-        </tr>
-        <tr v-for="admin in admins" :key="admin.id" class="admins-table-row">
-          <th class="admins-table-data">{{ admin.name }}</th>
-          <th class="admins-table-data">{{ admin.email }}</th>
-        </tr>
-      </table>
+    <demalAppInputSearch class="admins-search" placeholder="Искать" />
+    <div class="admins-container">
+      <h2 class="admins-title">Админы</h2>
+      <div class="admins-add" @click="isModalOpen = !isModalOpen">
+        <svg
+          class="admins-add-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style="fill: #ffffff; transform: ; -ms-filter: "
+        >
+          <path
+            d="M19 11L13 11 13 5 11 5 11 11 5 11 5 13 11 13 11 19 13 19 13 13 19 13z"
+          ></path>
+        </svg>
+      </div>
     </div>
-    <div class="admins-right-half"></div>
+    <demalAdminsTable :heads="tableHeads" :items="admins" />
+    <demalModal :isOpen="isModalOpen" @close-modal="isModalOpen = false">
+      <h2 class="admins-title">Добавление админа</h2>
+      <demalAppInput
+        class="admins-input"
+        unsolid="true"
+        placeholder="Введите имя"
+        title="Имя"
+      />
+      <demalAppInput
+        class="admins-input"
+        unsolid="true"
+        placeholder="Введите фамилию"
+        title="Фамилия"
+      />
+      <demalAppInput
+        class="admins-input"
+        unsolid="true"
+        placeholder="Введите почту"
+        title="Почта"
+      />
+      <demalAppInput
+        class="admins-input"
+        unsolid="true"
+        placeholder="Введите пароль"
+        title="Пароль"
+        type="password"
+      />
+      <demalAppButton class="admins-button">Добавить</demalAppButton>
+    </demalModal>
   </div>
 </template>
 
 <script>
+import demalAppInputSearch from "@/components/common/demal-app-input-search";
 import demalAppInput from "@/components/common/demal-app-input";
+import demalAdminsTable from "@/components/admins/demal-admins-table";
+import demalModal from "@/components/common/demal-modal";
+import demalAppButton from "@/components/common/demal-app-button";
 
 export default {
   components: {
+    demalAppInputSearch,
     demalAppInput,
+    demalAdminsTable,
+    demalModal,
+    demalAppButton,
   },
   data() {
     return {
+      tableHeads: [
+        "Имя",
+        "Фамилия",
+        "Почта",
+        "Дата подтверждения",
+        "Дата создания",
+      ],
       admins: [
         {
           id: 0,
-          name: "Данияр Егеубай",
+          firstName: "Данияр",
+          lastName: "Егеубай",
           email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
         },
         {
           id: 1,
-          name: "Данияр Егеубай",
+          firstName: "Данияр",
+          lastName: "Егеубай",
           email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
         },
         {
           id: 2,
-          name: "Данияр Егеубай",
+          firstName: "Данияр",
+          lastName: "Егеубай",
           email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
         },
         {
           id: 3,
-          name: "Данияр Егеубай",
+          firstName: "Данияр",
+          lastName: "Егеубай",
           email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
         },
         {
           id: 4,
-          name: "Данияр Егеубай",
+          firstName: "Данияр",
+          lastName: "Егеубай",
           email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 5,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 6,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 7,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 8,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 9,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 10,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
+        },
+        {
+          id: 11,
+          firstName: "Данияр",
+          lastName: "Егеубай",
+          email: "donchik020202@gmail.com",
+          emailVerifiedAt: "23.04.2021",
+          createdAt: "23.04.2021",
         },
       ],
+      isModalOpen: false,
     };
   },
 };
@@ -64,37 +185,49 @@ export default {
 
 .admins {
   color: $white;
-  display: flex;
-  justify-content: space-between;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
 
   &-search {
     width: 500px;
   }
 
-  &-left-half {
-    width: 50%;
+  &-title {
+    font-family: "PT Sans Caption", sans-serif !important;
+    color: $white;
+    opacity: 0.9;
+    margin-right: 30px;
   }
 
-  &-table {
+  &-add {
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #4f4b64;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+  }
+
+  &-add:hover {
+    opacity: 0.8;
+  }
+
+  &-input {
+    margin-top: 20px;
+  }
+
+  &-button {
+    margin-top: 30px;
     width: 100%;
-    font-family: "PT Sans Caption", sans-serif !important;
-    margin-top: 40px;
-
-    &-head {
-      opacity: 0.6;
-      padding: 20px 15px;
-      box-sizing: border-box;
-    }
-
-    &-row:nth-child(2n + 1) {
-      background-color: #4f4b64;
-      border-radius: 15px;
-    }
-
-    &-data {
-      padding: 20px 15px;
-      box-sizing: border-box;
-    }
   }
 }
 </style>

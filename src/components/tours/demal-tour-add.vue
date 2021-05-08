@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import demalAppInputEdit from "@/components/common/demal-app-input-edit";
+import demalAppInputEdit from "@/components/common/demal-app-input";
 import demalAppTextarea from "@/components/common/demal-app-textarea";
 import demalAppButton from "@/components/common/demal-app-button";
 

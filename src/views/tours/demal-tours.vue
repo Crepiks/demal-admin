@@ -1,7 +1,7 @@
 <template>
   <div class="tours">
     <div class="tours-list">
-      <demalAppInput placeholder="Искать" />
+      <demalAppInputSearch placeholder="Искать" />
       <div class="tours-tags">
         <div class="tours-tag">На этой неделе</div>
         <div class="tours-tag">Тур на один день</div>
@@ -48,14 +48,14 @@
 </template>
 
 <script>
-import demalAppInput from "@/components/common/demal-app-input";
+import demalAppInputSearch from "@/components/common/demal-app-input-search";
 import tourCard from "@/components/tours/demal-tour-card";
 import tourEdit from "@/components/tours/demal-tour-edit";
 import tourAdd from "@/components/tours/demal-tour-add";
 
 export default {
   components: {
-    demalAppInput,
+    demalAppInputSearch,
     tourCard,
     tourEdit,
     tourAdd,

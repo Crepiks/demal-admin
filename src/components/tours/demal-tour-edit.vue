@@ -27,41 +27,36 @@
         <div class="tour-tag">Экстремальный тур</div>
         <div class="tour-tag">Без спец оборудования</div>
       </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Название</div>
-        <demalAppInputEdit v-model="name" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Описание</div>
-        <demalAppTextarea :value="description" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Цена</div>
-        <demalAppInputEdit v-model="cost" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Время проведения</div>
-        <demalAppInputEdit v-model="date" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Локация</div>
-        <demalAppInputEdit v-model="location" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Необходимые вещи</div>
-        <demalAppTextarea :value="staff" />
-      </div>
-      <div class="tour-input">
-        <div class="tour-input-title">Участники</div>
-        <demalAppTextarea :value="participants" />
-      </div>
+      <demalAppInput class="tour-input" v-model="name" title="Название" />
+      <demalAppTextarea
+        class="tour-input"
+        :value="description"
+        title="Название"
+      />
+      <demalAppInput class="tour-input" v-model="cost" title="Цена" />
+      <demalAppInput
+        class="tour-input"
+        v-model="date"
+        title="Время проведения"
+      />
+      <demalAppInput class="tour-input" v-model="location" title="Локация" />
+      <demalAppTextarea
+        class="tour-input"
+        :value="staff"
+        title="Необходимые вещи"
+      />
+      <demalAppTextarea
+        class="tour-input"
+        :value="participants"
+        title="Участники"
+      />
     </div>
     <demalAppButton>Сохранить</demalAppButton>
   </div>
 </template>
 
 <script>
-import demalAppInputEdit from "@/components/common/demal-app-input-edit";
+import demalAppInput from "@/components/common/demal-app-input";
 import demalAppTextarea from "@/components/common/demal-app-textarea";
 import demalAppButton from "@/components/common/demal-app-button";
 import kolsai from "@/assets/images/kolsai.jpg";
@@ -73,7 +68,7 @@ import kolsai5 from "@/assets/images/kolsai5.jpg";
 
 export default {
   components: {
-    demalAppInputEdit,
+    demalAppInput,
     demalAppTextarea,
     demalAppButton,
   },
@@ -210,15 +205,6 @@ export default {
 
   &-input {
     margin-bottom: 20px;
-  }
-
-  &-input {
-    &-title {
-      font-size: 13px;
-      color: $white;
-      opacity: 0.8;
-      margin-bottom: 10px;
-    }
   }
 
   &-tags {
