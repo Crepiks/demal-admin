@@ -1,27 +1,33 @@
 <template>
-  <div class="tour" @click="$emit('click')">
+  <div class="tour" @click="$emit('click', tour.id)">
     <div class="tour-image">
       <img class="tour-image-inner" src="@/assets/images/kolsai.jpg" alt="" />
     </div>
     <div class="tour-info">
       <div class="tour-container">
-        <div class="tour-tag">Тур на один день</div>
+        <div class="tour-tag">{{ tour.tag }}</div>
         <i class="far fa-edit tour-edit"></i>
       </div>
-      <div class="tour-name">Озеро Кольсай Каинды и черный каньон</div>
-      <div class="tour-date">Начало: 7 мая</div>
+      <div class="tour-name">{{ tour.title }}</div>
+      <div class="tour-date">Начало: {{ tour.date }}</div>
       <div class="tour-container">
-        <div class="tour-raiting">
-          <i class="fas fa-star tour-raiting-star"></i> 4.8
+        <div class="tour-rating">
+          <i class="fas fa-star tour-rating-star"></i> {{ tour.rating }}
         </div>
-        <div class="tour-people">10 человек</div>
+        <div class="tour-people">{{ tour.participants.length }} человек</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    tour: {
+      type: [Array, Object],
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -85,7 +91,7 @@ export default {};
     font-size: 13px;
   }
 
-  &-raiting {
+  &-rating {
     font-size: 10px;
 
     &-star {

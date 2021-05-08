@@ -6,7 +6,7 @@
     <div class="tour-images">
       <div
         class="tour-images-single"
-        v-for="image in images"
+        v-for="image in tour.images"
         :key="image.id"
         @mouseover="changeImage(image)"
         @mouseout="mouseOut(image)"
@@ -22,32 +22,53 @@
     </div>
     <div class="tour-info">
       <div class="tour-tags">
-        <div class="tour-tag">На этой неделе</div>
-        <div class="tour-tag">Тур на один день</div>
-        <div class="tour-tag">Экстремальный тур</div>
-        <div class="tour-tag">Без спец оборудования</div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'На этой неделе' }"
+        >
+          На этой неделе
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Тур на один день' }"
+        >
+          Тур на один день
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Экстремальный тур' }"
+        >
+          Экстремальный тур
+        </div>
+        <div
+          class="tour-tag"
+          :class="{ 'tour-tag-active': tour.tag == 'Без спец оборудования' }"
+        >
+          Без спец оборудования
+        </div>
       </div>
-      <demalAppInput class="tour-input" v-model="name" title="Название" />
+      <demalAppInput class="tour-input" v-model="tour.title" title="Название" />
       <demalAppTextarea
         class="tour-input"
-        :value="description"
+        v-model="tour.description"
         title="Название"
       />
-      <demalAppInput class="tour-input" v-model="cost" title="Цена" />
+      <demalAppInput class="tour-input" v-model="tour.cost" title="Цена" />
       <demalAppInput
         class="tour-input"
-        v-model="date"
+        v-model="tour.date"
         title="Время проведения"
       />
-      <demalAppInput class="tour-input" v-model="location" title="Локация" />
+      <demalAppInput class="tour-input" v-model="tour.lon" title="Долгота" />
+      <demalAppInput class="tour-input" v-model="tour.lat" title="Широта" />
       <demalAppTextarea
         class="tour-input"
-        :value="staff"
+        v-model="tour.equipment"
         title="Необходимые вещи"
       />
       <demalAppTextarea
         class="tour-input"
-        :value="participants"
+        v-model="tour.participants"
         title="Участники"
       />
     </div>
@@ -72,55 +93,81 @@ export default {
     demalAppTextarea,
     demalAppButton,
   },
+  props: {
+    tourId: {
+      type: Number,
+    },
+  },
   data() {
     return {
-      name: "Озеро Кольсай Каинды и черный каньон",
-      description:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
-      cost: "150$",
-      date: "23.05.2021",
-      location: "Озеро Кольсай Каинды",
-      staff: "",
-      participants: "",
-      mainImage: kolsai,
-      images: [
-        {
-          id: 0,
-          path: kolsai,
-          cover: false,
-        },
-        {
-          id: 1,
-          path: kolsai1,
-          cover: false,
-        },
-        {
-          id: 2,
-          path: kolsai2,
-          cover: false,
-        },
-        {
-          id: 3,
-          path: kolsai3,
-          cover: false,
-        },
-        {
-          id: 4,
-          path: kolsai4,
-          cover: false,
-        },
-        {
-          id: 5,
-          path: kolsai5,
-          cover: false,
-        },
-      ],
+      tour: {
+        id: 0,
+        tag: "Тур на один день",
+        title: "Озеро Кольсай Каинды и черный каньон",
+        description:
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
+        cost: "150$",
+        date: "23.05.2021",
+        lon: "12.23.51.85",
+        lat: "12.23.51.85",
+        equipment: "Lorem ipsum dolor sit amet consectetur",
+        participants: [
+          {
+            id: 0,
+            firstName: "Данияр",
+          },
+          {
+            id: 1,
+            firstName: "Данияр",
+          },
+          {
+            id: 2,
+            firstName: "Данияр",
+          },
+          {
+            id: 3,
+            firstName: "Данияр",
+          },
+          {
+            id: 4,
+            firstName: "Данияр",
+          },
+        ],
+        rating: "4.8",
+        images: [
+          {
+            id: 0,
+            path: kolsai,
+          },
+          {
+            id: 1,
+            path: kolsai1,
+          },
+          {
+            id: 2,
+            path: kolsai2,
+          },
+          {
+            id: 3,
+            path: kolsai3,
+          },
+          {
+            id: 4,
+            path: kolsai4,
+          },
+          {
+            id: 5,
+            path: kolsai5,
+          },
+        ],
+      },
       kolsai: kolsai,
       kolsai1: kolsai1,
       kolsai2: kolsai2,
       kolsai3: kolsai3,
       kolsai4: kolsai4,
       kolsai5: kolsai5,
+      mainImage: null,
     };
   },
   methods: {
@@ -131,6 +178,9 @@ export default {
     mouseOut(image) {
       image.cover = false;
     },
+  },
+  mounted() {
+    this.mainImage = this.tour.images[0].path;
   },
 };
 </script>
@@ -224,6 +274,11 @@ export default {
     margin-bottom: 10px;
     cursor: pointer;
     transition: 200ms ease-in-out;
+
+    &-active {
+      background-color: #b2b2b2;
+      color: $black;
+    }
   }
 
   &-tag:hover {

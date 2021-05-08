@@ -1,10 +1,13 @@
 <template>
-  <textarea
-    :type="type"
-    :placeholder="placeholder"
-    class="input"
-    :value="value"
-  />
+  <div class="input-container">
+    <div class="input-title">{{ title }}</div>
+    <textarea
+      :type="type"
+      :placeholder="placeholder"
+      class="input"
+      :value="value"
+    />
+  </div>
 </template>
 
 <script>
@@ -19,6 +22,9 @@ export default {
     },
     value: {
       type: [Number, String, Array],
+    },
+    title: {
+      type: String,
     },
   },
 };
@@ -40,6 +46,13 @@ export default {
   transition: 200ms ease-in-out;
   line-height: 20px;
   min-height: 100px;
+
+  &-title {
+    font-size: 13px;
+    color: $white;
+    opacity: 0.7;
+    margin-bottom: 10px;
+  }
 
   &:focus {
     padding-left: 23px;

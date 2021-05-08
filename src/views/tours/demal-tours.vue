@@ -9,7 +9,9 @@
         <div class="tours-tag">Без спец оборудования</div>
       </div>
       <div class="tours-title-container">
-        <h2 class="tours-title">Туры <span class="tours-number">30</span></h2>
+        <h2 class="tours-title">
+          Туры <span class="tours-number">{{ tours.length }}</span>
+        </h2>
         <div class="tours-add" @click="tourAddClicked">
           <svg
             class="tours-add-icon"
@@ -26,14 +28,17 @@
         </div>
       </div>
       <div class="tours-wrapper">
-        <tourCard class="tours-card" @click="tourCardClicked" />
-        <tourCard class="tours-card" @click="tourCardClicked" />
-        <tourCard class="tours-card" @click="tourCardClicked" />
-        <tourCard class="tours-card" @click="tourCardClicked" />
+        <tourCard
+          class="tours-card"
+          :tour="tour"
+          v-for="tour in tours"
+          :key="tour.id"
+          @click="tourCardClicked"
+        />
       </div>
     </div>
     <div class="tours-right">
-      <tourEdit v-show="active == 'tourEdit'" />
+      <tourEdit v-show="active == 'tourEdit'" :tourId="tourId" />
       <tourAdd v-show="active == 'tourAdd'" />
       <div v-show="active == 'empty'" class="tours-empty">
         <div class="tours-empty-container">
@@ -53,6 +58,13 @@ import tourCard from "@/components/tours/demal-tour-card";
 import tourEdit from "@/components/tours/demal-tour-edit";
 import tourAdd from "@/components/tours/demal-tour-add";
 
+import kolsai from "@/assets/images/kolsai.jpg";
+import kolsai1 from "@/assets/images/kolsai1.jpg";
+import kolsai2 from "@/assets/images/kolsai2.jpg";
+import kolsai3 from "@/assets/images/kolsai3.jpg";
+import kolsai4 from "@/assets/images/kolsai4.jpeg";
+import kolsai5 from "@/assets/images/kolsai5.jpg";
+
 export default {
   components: {
     demalAppInputSearch,
@@ -63,14 +75,79 @@ export default {
   data() {
     return {
       active: "empty",
+      tourId: null,
+      tours: [
+        {
+          id: 0,
+          tag: "Тур на один день",
+          title: "Озеро Кольсай Каинды и черный каньон",
+          description:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est, delectus error quaerat dolore earum incidunt totam optio. Cupiditate deserunt reprehenderit fuga, facilis repudiandae deleniti necessitatibus quae placeat vel, illo earum.",
+          cost: "150$",
+          date: "23.05.2021",
+          lon: "12.23.51.85",
+          lat: "12.23.51.85",
+          equipment: "Lorem ipsum dolor sit amet consectetur",
+          participants: [
+            {
+              id: 0,
+              firstName: "Данияр",
+            },
+            {
+              id: 1,
+              firstName: "Данияр",
+            },
+            {
+              id: 2,
+              firstName: "Данияр",
+            },
+            {
+              id: 3,
+              firstName: "Данияр",
+            },
+            {
+              id: 4,
+              firstName: "Данияр",
+            },
+          ],
+          rating: "4.8",
+          images: [
+            {
+              id: 0,
+              path: kolsai,
+            },
+            {
+              id: 1,
+              path: kolsai1,
+            },
+            {
+              id: 2,
+              path: kolsai2,
+            },
+            {
+              id: 3,
+              path: kolsai3,
+            },
+            {
+              id: 4,
+              path: kolsai4,
+            },
+            {
+              id: 5,
+              path: kolsai5,
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
     tourAddClicked() {
       this.active = "tourAdd";
     },
-    tourCardClicked() {
+    tourCardClicked(id) {
       this.active = "tourEdit";
+      this.tourId = id;
     },
   },
 };
