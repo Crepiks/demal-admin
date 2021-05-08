@@ -6,6 +6,7 @@
       :placeholder="placeholder"
       class="input"
       :class="{ 'input-unsolid': unsolid }"
+      :value="value"
     />
   </div>
 </template>
@@ -25,6 +26,9 @@ export default {
     },
     unsolid: {
       type: Boolean,
+    },
+    value: {
+      type: [Number, String, Array],
     },
   },
 };
